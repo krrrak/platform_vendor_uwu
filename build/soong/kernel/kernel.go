@@ -739,6 +739,8 @@ func (m *kernelHeadersModule) DepsMutator(ctx android.BottomUpMutatorContext) {
 }
 
 func (m *kernelHeadersModule) GenerateAndroidBuildActions(ctx android.ModuleContext) {
+	// Prebuilt kernels may supply device UAPI headers without a Kbuild output.
+	m.headerDirs = android.PathsForSource(ctx, ctx.DeviceConfig().DeviceKernelHeaderDirs())
 	ctx.VisitDirectDepsProxyWithTag(kernelHeadersDepTag, func(dep android.ModuleProxy) {
 		commonInfo := android.OtherModulePointerProviderOrDefault(ctx, dep, android.CommonModuleInfoProvider)
 		if commonInfo.GeneratedSource == nil {
