@@ -28,6 +28,7 @@ $(call inherit-product-if-exists, vendor/extra/product.mk)
 
 # uwuAOSP components
 PRODUCT_PACKAGES += \
+    Updater \
     uwuSettingsExt \
     uwuClock \
     CatShare \
